@@ -12,7 +12,7 @@ pipeline {
         stage('Migrate Database and Collect Static Files') {
             steps{
                 sh """
-                    source /home/biju/evp/venv/bin/activate
+                    source venv/bin/activate
                     python manage.py makemigrations
                     python manage.py migrate
                     python manage.py collectstatic --noinput
@@ -22,7 +22,7 @@ pipeline {
         stage('Setup Gunicorn') {
             steps {
                 sh """
-                    source /home/biju/evp/venv/bin/activate
+                    source venv/bin/activate
                     chmod +x gunicorn.sh
                     ./gunicorn.sh
                 """
