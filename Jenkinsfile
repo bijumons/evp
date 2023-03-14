@@ -9,16 +9,6 @@ pipeline {
              """
             }
         }
-        stage('Migrate Database and Collect Static Files') {
-            steps{
-                sh """
-                    source venv/bin/activate
-                    python manage.py makemigrations
-                    python manage.py migrate
-                    python manage.py collectstatic --noinput
-                """
-            }
-        }
         stage('Setup Gunicorn') {
             steps {
                 sh """
