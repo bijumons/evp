@@ -1,16 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout SCM') {
+        stage('Env Setup') {
             steps {
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/master']],
-                    userRemoteConfigs: [[
-                        credentialsId: 'bit1',
-                        url: 'https://bitbucket.org/atl_admins/evp.git'
-                    ]]
-                ])
+             sh """
+                 chmod +x envsetup.sh
+                 ./envsetup.sh
+                """
             }
         }
         stage('Migrate Database and Collect Static Files') {
