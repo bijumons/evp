@@ -6,7 +6,7 @@ pipeline {
              sh """
                  chmod +x envsetup.sh
                  ./envsetup.sh
-                """
+             """
             }
         }
         stage('Migrate Database and Collect Static Files') {

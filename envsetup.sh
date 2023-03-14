@@ -1,5 +1,5 @@
 #!/bin/bash
-if [-d "venv" ]; then
+if [ -d "venv" ]; then
     echo "virtualenv already exists"
 else
   virtualenv venv
@@ -7,7 +7,7 @@ fi
 echo $PWD
 source /home/biju/evp/venv/bin/activate
 pip install -r requirements.txt
-if [-d "logs" ]; then
+if [ -d "logs" ]; then
     echo "logs already exists"
 else
   mkdir logs
