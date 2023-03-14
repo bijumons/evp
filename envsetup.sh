@@ -5,7 +5,7 @@ else
   virtualenv venv
 fi
 echo $PWD
-source /home/biju/evp/venv/bin/activate
+. /home/biju/evp/venv/bin/activate
 pip install -r requirements.txt
 if [ -d "logs" ]; then
     echo "logs already exists"
@@ -15,4 +15,3 @@ else
 fi
 sudo chmod -R 777 logs
 echo "env setup done"
-
