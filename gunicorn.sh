@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Activate the virtual environment
-source /home/biju/evp/venv/bin/activate
+source /venv/bin/activate
 cd /home/biju/evp
 python manage.py makemigrations
 python manage.py migrate

@@ -5,7 +5,7 @@ else
   virtualenv venv
 fi
 echo $PWD
-source venv/bin/activate
+. /var/lib/jenkins/workspace/evp/venv/bin/activate
 pip install -r requirements.txt
 if [ -d "logs" ]; then
     echo "logs already exists"
