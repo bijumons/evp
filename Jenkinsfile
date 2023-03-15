@@ -12,7 +12,7 @@ pipeline {
         stage('Setup Gunicorn') {
             steps {
                 sh """
-                    source venv/bin/activate
+                    . venv/bin/activate
                     chmod +x gunicorn.sh
                     ./gunicorn.sh
                 """
