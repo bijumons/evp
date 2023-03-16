@@ -1,5 +1,20 @@
 #!/bin/bash
 
+sudo cp -rf app.conf /etc/nginx/sites-available/evp
+chmod 710 /var/lib/jenkins/evp
+
+sudo ln -s /etc/nginx/sites-available/evp /etc/nginx/sites-enabled
+sudo nginx -t
+
+sudo systemctl start nginx
+sudo systemctl enable nginx
+
+echo "Nginx has been started"
+
+sudo systemctl status nginx
+
+#!/bin/bash
+
 # Install Nginx
 sudo apt-get update
 sudo apt-get install nginx
