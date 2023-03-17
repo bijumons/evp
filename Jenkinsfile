@@ -3,19 +3,19 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/master']],
-                    userRemoteConfigs: [[url: 'https://github.com/bijumons/evp.git']]
-                ])
+                checkout([$class: 'GitSCM',
+                          branches: [[name: '*/master']],
+                          doGenerateSubmoduleConfigurations: false,
+                          extensions: [],
+                          submoduleCfg: [],
+                          userRemoteConfigs: [[url: 'https://github.com/bijumons/evp.git']]])
             }
         }
         stage('Env Setup') {
             steps {
-                withEnv(['GIT_ASKPASS': 'git app pwd']) {
+                withEnv(['overrides' : 'GIT_ASKPASS=git app pwd']) {
                     sh """
-                        git fetch --tags --force --progress -- https://github.com/bijumons/evp.git +refs/heads/*:refs/remotes/origin/*
-                        git checkout -f origin/master
+                        git pull
                         chmod +x envsetup.sh
                         ./envsetup.sh
                     """
@@ -24,8 +24,9 @@ pipeline {
         }
         stage('Setup Gunicorn') {
             steps {
-                withEnv(['PATH+VENVS': 'venv/bin']) {
+                withEnv(['overrides' : 'PATH+VENVS=venv/bin']) {
                     sh """
+                        . venv/bin/activate
                         chmod +x gunicorn.sh
                         ./gunicorn.sh
                     """
