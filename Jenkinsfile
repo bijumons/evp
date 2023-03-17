@@ -11,11 +11,11 @@ pipeline {
                           userRemoteConfigs: [[url: 'https://github.com/bijumons/evp.git']]])
             }
         }
-        stage('Env Setup') {
+       stage('Env Setup') {
             steps {
-                withEnv(['overrides' : ['GIT_ASKPASS=git app pwd']]) {
+                withEnv(['overrides' : 'GIT_ASKPASS=git app pwd']) {
                     sh """
-                        git pull
+                        git pull origin master
                         chmod +x envsetup.sh
                         ./envsetup.sh
                     """
