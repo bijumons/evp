@@ -1,6 +1,16 @@
 pipeline {
     agent any
     stages {
+        stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM',
+                          branches: [[name: '*/master']],
+                          doGenerateSubmoduleConfigurations: false,
+                          extensions: [],
+                          submoduleCfg: [],
+                          userRemoteConfigs: [[url: 'https://github.com/bijumons/evp.git']]])
+            }
+        }
         stage('Env Setup') {
             steps {
              sh """
