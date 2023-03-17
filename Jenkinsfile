@@ -15,6 +15,7 @@ pipeline {
             steps {
                 withEnv(['overrides' : ['GIT_ASKPASS=git app pwd']]) {
                     sh """
+                        git reset --hard origin/master
                         git pull origin master
                         chmod +x envsetup.sh
                         ./envsetup.sh
