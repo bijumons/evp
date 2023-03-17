@@ -14,6 +14,7 @@ pipeline {
         stage('Env Setup') {
             steps {
              sh """
+                 git pull
                  chmod +x envsetup.sh
                  ./envsetup.sh
              """
