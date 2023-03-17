@@ -13,7 +13,7 @@ pipeline {
         }
        stage('Env Setup') {
             steps {
-                withEnv(['overrides' : 'GIT_ASKPASS=git app pwd']) {
+                withEnv(['overrides' : ['GIT_ASKPASS=git app pwd']]) {
                     sh """
                         git pull origin master
                         chmod +x envsetup.sh
