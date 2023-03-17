@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Env Setup') {
             steps {
-                withEnv(['overrides' : 'GIT_ASKPASS=git app pwd']) {
+                withEnv(['overrides' : ['GIT_ASKPASS=git app pwd']]) {
                     sh """
                         git pull
                         chmod +x envsetup.sh
@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Setup Gunicorn') {
             steps {
-                withEnv(['overrides' : 'PATH+VENVS=venv/bin']) {
+                withEnv(['overrides' : ['PATH+VENVS=venv/bin']]) {
                     sh """
                         . venv/bin/activate
                         chmod +x gunicorn.sh
